@@ -1,4 +1,4 @@
-# PART2_PROG622 Claim Management System
+#Claim Management System
 
 ## Description
 This is a web-based **Claim Management System** built with **ASP.NET Core MVC**. The project allows users to submit, manage, and review claims and upload associated files. There are different roles, including **Lecturer**, **Coordinator**, and **Manager**, each with specific access to various features.
