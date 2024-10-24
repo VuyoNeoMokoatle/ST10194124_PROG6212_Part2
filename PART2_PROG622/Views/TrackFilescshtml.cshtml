@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PART2_PROG622.Models.FileCreation>
+
+<div class="container">
+    <h2 class="mb-4">Track Files</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Description</th>
+                    <th>Upload Date</th>
+                    <th>Status</th>
+                    <th>Created On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.FileName</td>
+                        <td>@item.Description</td>
+                        <td>@item.UploadDate.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            <span class="badge @(item.Status switch {
+                                FileStatus.Processed => "bg-success",
+                                FileStatus.Rejected => "bg-danger",
+                                FileStatus.Archived => "bg-secondary",
+                                _ => "bg-warning"
+                            })">
+                                @item.Status
+                            </span>
+                        </td>
+                        <td>@item.CreatedOn.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            <a asp-action="Download" asp-route-id="@item.Id" class="btn btn-primary btn-sm">
+                                Download
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

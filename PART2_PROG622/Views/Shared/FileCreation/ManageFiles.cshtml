@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PART2_PROG622.Models.FileCreation> 
+
+@{
+    ViewData["Title"] = "Manage Files";
+}
+
+<h2>Manage Files</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Description</th>
+            <th>Uploaded By</th>
+            <th>Upload Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model)
+        {
+            <tr>
+                <td>@file.FileName</td>
+                <td>@file.Description</td>
+                <td>@file.UploadedBy</td>
+                <td>@file.UploadDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Download" asp-route-id="@file.Id" class="btn btn-sm btn-info">Download</a>
+                    <form asp-action="Delete" asp-route-id="@file.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

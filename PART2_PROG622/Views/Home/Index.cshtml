@@ -1,0 +1,31 @@
+﻿@model PART2_PROG622.Models.FileUploadViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Claim Management System</h1>
+    <p>Choose an action:</p>
+
+    <a asp-controller="Claim" asp-action="Submit" class="btn btn-primary">Submit a Claim</a>
+    <a asp-controller="Claim" asp-action="ManageClaims" class="btn btn-secondary">Manage Claims</a>
+</div>
+
+<div class="card-body">
+    <div class="list-group">
+        @if (User.IsInRole("Lecturer"))
+        {
+            <a asp-controller="Claim" asp-action="ManageClaims" class="list-group-item list-group-item-action">
+                View My Claims
+            </a>
+        }
+        @if (User.IsInRole("Coordinator") || User.IsInRole("Manager"))
+        {
+            <a asp-controller="Claim" asp-action="ManageClaims" class="list-group-item list-group-item-action">
+                Manage Claims
+            </a>
+        }
+    </div>
+</div>
+

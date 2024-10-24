@@ -1,0 +1,86 @@
+﻿@model PART2_PROG622.Models.FileUploadViewModel
+
+<div class="container">
+    <h2 class="mb-4">Upload Document</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="CreateFile" enctype="multipart/form-data" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="File" class="form-label">Select File</label>
+                            <input asp-for="File" type="file" class="form-control" />
+                            <span asp-validation-for="File" class="text-danger"></span>
+                            <small class="form-text text-muted">
+                                Allowed file types: .pdf, .docx, .xlsx, .doc, .xls (Max size: 10MB)
+                            </small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ClaimId" class="form-label">Related Claim ID (Optional)</label>
+                            <input asp-for="ClaimId" class="form-control" />
+                            <span asp-validation-for="ClaimId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input asp-for="IsConfidential" class="form-check-input" />
+                            <label asp-for="IsConfidential" class="form-check-label">Mark as Confidential</label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Upload Document</button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <h2>Create File</h2>
+
+        <form asp-action="CreateFile" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="File">Select File</label>
+                <input type="file" name="File" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <input type="text" name="Description" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Upload Guidelines</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">✓ Ensure files are under 10MB</li>
+                        <li class="mb-2">✓ Use clear, descriptive file names</li>
+                        <li class="mb-2">✓ Include relevant claim ID if applicable</li>
+                        <li class="mb-2">✓ Mark confidential documents accordingly</li>
+                        <li class="mb-2">✓ Provide clear document descriptions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

@@ -1,0 +1,58 @@
+﻿@model PART2_PROG622.Models.Claim
+
+@{
+    ViewData["Title"] = "Verify Claim";
+}
+
+<div class="container mt-5">
+    <h2>Verify Claim</h2>
+
+    <form asp-controller="Claim" asp-action="Review" method="post">
+        <input type="hidden" asp-for="ClaimId" />
+
+        <div class="form-group mb-3">
+            <label>Hours Worked</label>
+            <input type="text" asp-for="HoursWorked" class="form-control" readonly />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Hourly Rate</label>
+            <input type="text" asp-for="HourlyRate" class="form-control" readonly />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Notes</label>
+            <textarea asp-for="Notes" class="form-control" rows="3" readonly></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Date Submitted</label>
+            <input type="text" asp-for="DateSubmitted" class="form-control" readonly />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Supporting Document</label>
+            <a href="~/uploads/@Model.SupportingDocumentPath" target="_blank" class="btn btn-link">View Document</a>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Status</label>
+            <select asp-for="Status" class="form-control">
+                <option value="0">Pending</option>
+                <option value="1">Approved</option>
+                <option value="2">Rejected</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Reviewer Comments</label>
+            <textarea asp-for="ReviewerComments" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+            <a asp-action="ManageClaims" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+

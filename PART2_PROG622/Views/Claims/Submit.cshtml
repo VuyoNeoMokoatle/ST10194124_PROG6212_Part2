@@ -1,0 +1,32 @@
+﻿@model PART2_PROG622.Models.Claim
+
+@{
+    ViewData["Title"] = "Submit a Claim";
+}
+
+<h2>Submit a Claim</h2>
+
+<form asp-action="Submit" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="LecturerName"></label>
+        <input asp-for="LecturerName" class="form-control" />
+        <span asp-validation-for="LecturerName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Notes"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="supportingDocument">Supporting Document</label>
+        <input type="file" name="supportingDocument" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+

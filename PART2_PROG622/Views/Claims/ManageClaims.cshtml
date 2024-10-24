@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PART2_PROG622.Models.Claim>
+
+@{
+    ViewData["Title"] = "Manage Claims";
+}
+
+<h2>Manage Claims</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Lecturer Name</th>
+            <th>Notes</th>
+            <th>Date Submitted</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.LecturerName</td>
+                <td>@claim.Notes</td>
+                <td>@claim.DateSubmitted.ToShortDateString()</td>
+                <td>@claim.Status</td>
+                <td>
+                    <form asp-action="Review" method="post">
+                        <input type="hidden" name="ClaimId" value="@claim.Id" />
+                        <button type="submit" class="btn btn-info">Review</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
